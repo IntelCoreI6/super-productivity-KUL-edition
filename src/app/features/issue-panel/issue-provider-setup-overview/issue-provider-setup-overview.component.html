@@ -103,6 +103,13 @@
     <mat-icon svgIcon="nextcloud_deck"></mat-icon>
     <span>Nextcloud Deck</span>
   </button>
+  <button
+    mat-raised-button
+    (click)="openSetupDialog('NOTION')"
+  >
+    <mat-icon svgIcon="notion"></mat-icon>
+    <span>Notion</span>
+  </button>
   @for (provider of pluginProviders; track provider.pluginId) {
     <button
       mat-raised-button

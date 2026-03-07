@@ -179,6 +179,7 @@ export class GlobalThemeService {
       ['habit', 'assets/icons/habit.svg'],
       ['azure_devops', 'assets/icons/azure_devops.svg'],
       ['nextcloud_deck', 'assets/icons/nextcloud_deck.svg'],
+      ['notion', 'assets/icons/notion.svg'],
     ];
 
     // todo test if can be removed with airplane mode and wifi without internet

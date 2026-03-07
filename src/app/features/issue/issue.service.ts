@@ -28,6 +28,7 @@ import {
   CLICKUP_TYPE,
   AZURE_DEVOPS_TYPE,
   NEXTCLOUD_DECK_TYPE,
+  NOTION_TYPE,
 } from './issue.const';
 import { TaskService } from '../tasks/task.service';
 import { IssueTask, Task, TaskCopy } from '../tasks/task.model';
@@ -45,6 +46,7 @@ import { LinearCommonInterfacesService } from './providers/linear/linear-common-
 import { ClickUpCommonInterfacesService } from './providers/clickup/clickup-common-interfaces.service';
 import { AzureDevOpsCommonInterfacesService } from './providers/azure-devops/azure-devops-common-interfaces.service';
 import { NextcloudDeckCommonInterfacesService } from './providers/nextcloud-deck/nextcloud-deck-common-interfaces.service';
+import { NotionCommonInterfacesService } from './providers/notion/notion-common-interfaces.service';
 import { SnackService } from '../../core/snack/snack.service';
 import { T } from '../../t.const';
 import { TranslateService } from '@ngx-translate/core';
@@ -86,6 +88,7 @@ export class IssueService {
   private _nextcloudDeckCommonInterfaceService = inject(
     NextcloudDeckCommonInterfacesService,
   );
+  private _notionCommonInterfaceService = inject(NotionCommonInterfacesService);
   private _calendarCommonInterfaceService = inject(CalendarCommonInterfacesService);
   private _issueProviderService = inject(IssueProviderService);
   private _workContextService = inject(WorkContextService);
@@ -111,6 +114,7 @@ export class IssueService {
     [CLICKUP_TYPE]: this._clickUpCommonInterfaceService,
     [AZURE_DEVOPS_TYPE]: this._azureDevOpsCommonInterfaceService,
     [NEXTCLOUD_DECK_TYPE]: this._nextcloudDeckCommonInterfaceService,
+    [NOTION_TYPE]: this._notionCommonInterfaceService,
 
     // trello
     [TRELLO_TYPE]: this._trelloCommonInterfacesService,

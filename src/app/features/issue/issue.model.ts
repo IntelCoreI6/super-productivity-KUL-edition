@@ -35,6 +35,8 @@ import {
   NextcloudDeckIssue,
   NextcloudDeckIssueReduced,
 } from './providers/nextcloud-deck/nextcloud-deck-issue.model';
+import { NotionCfg } from './providers/notion/notion.model';
+import { NotionIssue } from './providers/notion/notion-issue.model';
 import {
   PluginIssue,
   PluginSearchResult,
@@ -57,7 +59,8 @@ export type BuiltInIssueProviderKey =
   | 'LINEAR'
   | 'CLICKUP'
   | 'AZURE_DEVOPS'
-  | 'NEXTCLOUD_DECK';
+  | 'NEXTCLOUD_DECK'
+  | 'NOTION';
 
 // Keys migrated from built-in to plugin — still valid as IssueProviderKey
 export type MigratedIssueProviderKey = 'GITHUB';
@@ -89,7 +92,8 @@ export type IssueIntegrationCfg =
   | LinearCfg
   | ClickUpCfg
   | AzureDevOpsCfg
-  | NextcloudDeckCfg;
+  | NextcloudDeckCfg
+  | NotionCfg;
 
 export enum IssueLocalState {
   OPEN = 'OPEN',
@@ -111,6 +115,7 @@ export interface IssueIntegrationCfgs {
   CLICKUP?: ClickUpCfg;
   AZURE_DEVOPS?: AzureDevOpsCfg;
   NEXTCLOUD_DECK?: NextcloudDeckCfg;
+  NOTION?: NotionCfg;
 }
 
 export type IssueData =
@@ -126,6 +131,7 @@ export type IssueData =
   | ClickUpTask
   | AzureDevOpsIssue
   | NextcloudDeckIssue
+  | NotionIssue
   | PluginIssue;
 
 export type IssueDataReduced =
@@ -141,6 +147,7 @@ export type IssueDataReduced =
   | ClickUpTaskReduced
   | AzureDevOpsIssueReduced
   | NextcloudDeckIssueReduced
+  | NotionIssue
   | PluginSearchResult;
 
 export type IssueDataReducedMap = {
@@ -168,11 +175,13 @@ export type IssueDataReducedMap = {
                         ? AzureDevOpsIssueReduced
                         : K extends 'NEXTCLOUD_DECK'
                           ? NextcloudDeckIssueReduced
-                          : K extends MigratedIssueProviderKey
-                            ? PluginSearchResult
-                            : K extends PluginIssueProviderKey
+                          : K extends 'NOTION'
+                            ? NotionIssue
+                            : K extends MigratedIssueProviderKey
                               ? PluginSearchResult
-                              : never;
+                              : K extends PluginIssueProviderKey
+                                ? PluginSearchResult
+                                : never;
 };
 
 // TODO: add issue model to the IssueDataReducedMap
@@ -267,6 +276,10 @@ export interface IssueProviderNextcloudDeck extends IssueProviderBase, Nextcloud
   issueProviderKey: 'NEXTCLOUD_DECK';
 }
 
+export interface IssueProviderNotion extends IssueProviderBase, NotionCfg {
+  issueProviderKey: 'NOTION';
+}
+
 export interface IssueProviderPluginType extends IssueProviderBase {
   issueProviderKey: PluginIssueProviderKey | MigratedIssueProviderKey;
   pluginId: string;
@@ -287,6 +300,7 @@ export type IssueProvider =
   | IssueProviderClickUp
   | IssueProviderAzureDevOps
   | IssueProviderNextcloudDeck
+  | IssueProviderNotion
   | IssueProviderPluginType;
 
 export type IssueProviderTypeMap<T extends IssueProviderKey> = T extends 'JIRA'
@@ -315,8 +329,10 @@ export type IssueProviderTypeMap<T extends IssueProviderKey> = T extends 'JIRA'
                         ? IssueProviderAzureDevOps
                         : T extends 'NEXTCLOUD_DECK'
                           ? IssueProviderNextcloudDeck
-                          : T extends PluginIssueProviderKey
-                            ? IssueProviderPluginType
-                            : T extends MigratedIssueProviderKey
+                          : T extends 'NOTION'
+                            ? IssueProviderNotion
+                            : T extends PluginIssueProviderKey
                               ? IssueProviderPluginType
-                              : never;
+                              : T extends MigratedIssueProviderKey
+                                ? IssueProviderPluginType
+                                : never;
