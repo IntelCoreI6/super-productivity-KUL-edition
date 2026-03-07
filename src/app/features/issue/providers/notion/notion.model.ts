@@ -6,4 +6,5 @@ export interface NotionCfg extends BaseIssueProviderCfg {
   titlePropertyName: string | null;
   statusPropertyName: string | null;
   doneStatusName: string | null;
+  assigneePropertyName: string | null;
 }

@@ -112,6 +112,7 @@ export class NotionApiService {
   private _mapPageToIssue(page: any, cfg: NotionCfg): NotionIssue {
     const titleProp = cfg.titlePropertyName || 'Name';
     const statusProp = cfg.statusPropertyName || 'Status';
+    const assigneeProp = cfg.assigneePropertyName || 'Assign';
     const properties = page.properties || {};
 
     const titleArray = properties[titleProp]?.title || [];
@@ -120,8 +121,8 @@ export class NotionApiService {
     const status = properties[statusProp]?.status?.name ?? null;
 
     const assignees: { id: string; name: string; avatar_url: string | null }[] = [];
-    if (properties['Assign']?.people) {
-      for (const person of properties['Assign'].people) {
+    if (properties[assigneeProp]?.people) {
+      for (const person of properties[assigneeProp].people) {
         assignees.push({
           id: person.id,
           name: person.name || '',
@@ -136,9 +137,11 @@ export class NotionApiService {
       title,
       status,
       assignees,
+      // TODO: extract labels from Notion multi-select properties if needed
       labels: [],
       created_time: page.created_time,
       last_edited_time: page.last_edited_time,
+      // TODO: retrieve page content via the Notion blocks API
       body: null,
     };
   }

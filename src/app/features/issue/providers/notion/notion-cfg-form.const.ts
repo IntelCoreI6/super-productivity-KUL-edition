@@ -14,6 +14,7 @@ export const DEFAULT_NOTION_CFG: NotionCfg = {
   titlePropertyName: 'Name',
   statusPropertyName: 'Status',
   doneStatusName: 'Done',
+  assigneePropertyName: 'Assign',
 };
 
 export const NOTION_CONFIG_FORM: LimitedFormlyFieldConfig<IssueProviderNotion>[] = [
@@ -64,6 +65,14 @@ export const NOTION_CONFIG_FORM: LimitedFormlyFieldConfig<IssueProviderNotion>[]
     type: 'input',
     templateOptions: {
       label: T.F.NOTION.FORM.DONE_STATUS_NAME,
+      type: 'text',
+    },
+  },
+  {
+    key: 'assigneePropertyName',
+    type: 'input',
+    templateOptions: {
+      label: T.F.NOTION.FORM.ASSIGNEE_PROPERTY_NAME,
       type: 'text',
     },
   },
