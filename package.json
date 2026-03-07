@@ -1,7 +1,7 @@
 {
-  "name": "superProductivity",
+  "name": "studyflow-kul",
   "version": "17.2.4",
-  "description": "ToDo list and Time Tracking",
+  "description": "A course-focused productivity app for KU Leuven students, based on Super Productivity.",
   "keywords": [
     "ToDo",
     "Task Management",

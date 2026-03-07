@@ -124,6 +124,13 @@ export interface TaskCopy
   remindAt?: number;
   repeatCfgId?: string;
   _hideSubTasksMode?: HideSubTasksMode;
+
+  // Academic task fields (KUL edition)
+  taskType?: 'assignment' | 'exam' | 'quiz' | 'lab' | 'reading' | 'project' | 'other';
+  /** Unix timestamp (ms) for when to start working on this task. */
+  startDate?: number | null;
+  /** Unix timestamp (ms) for the hard deadline of this task. */
+  dueDate?: number | null;
 }
 
 /**

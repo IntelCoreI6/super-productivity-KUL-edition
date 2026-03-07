@@ -41,5 +41,37 @@ export const CREATE_PROJECT_BASIC_CONFIG_FORM_CONFIG: ConfigFormSection<Project>
         label: T.F.PROJECT.FORM_BASIC.L_ENABLE_BACKLOG,
       },
     },
+    {
+      key: 'courseCode',
+      type: 'input',
+      templateOptions: {
+        label: 'Course Code',
+        placeholder: 'e.g. CS 101',
+      },
+    },
+    {
+      key: 'instructor',
+      type: 'input',
+      templateOptions: {
+        label: 'Instructor',
+        placeholder: 'e.g. Prof. De Smedt',
+      },
+    },
+    {
+      key: 'semester',
+      type: 'input',
+      templateOptions: {
+        label: 'Semester',
+        placeholder: 'e.g. Spring 2026',
+      },
+    },
+    {
+      key: 'credits',
+      type: 'input',
+      templateOptions: {
+        label: 'Credits (ECTS)',
+        type: 'number',
+      },
+    },
   ],
 };

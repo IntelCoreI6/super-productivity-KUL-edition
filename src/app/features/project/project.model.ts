@@ -28,6 +28,12 @@ export interface ProjectCopy
     WorkContextCommon {
   // Additional app-specific fields
   issueIntegrationCfgs?: IssueIntegrationCfgs;
+
+  // Course-specific fields (KUL edition)
+  courseCode?: string;
+  instructor?: string;
+  semester?: string;
+  credits?: number;
 }
 
 export type Project = Readonly<ProjectCopy>;
