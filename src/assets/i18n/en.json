@@ -1801,6 +1801,20 @@
         "NO_DATA": "No tasks this week yet.",
         "TITLE": "Title"
       }
+    },
+    "NOTION": {
+      "FORM": {
+        "API_TOKEN": "Internal Integration Token",
+        "DATABASE_ID": "Database ID",
+        "DATABASE_ID_DESCRIPTION": "Can be found in the URL of your Notion database. It is the part after the workspace name and before the question mark.",
+        "TITLE_PROPERTY_NAME": "Title Property Name (default: Name)",
+        "STATUS_PROPERTY_NAME": "Status Property Name (default: Status)",
+        "DONE_STATUS_NAME": "Done Status Name (default: Done)",
+        "ASSIGNEE_PROPERTY_NAME": "Assignee Property Name (default: Assign)"
+      },
+      "FORM_SECTION": {
+        "HELP": "<p>Here you can configure Super Productivity to sync tasks with a Notion database. Pages in the configured database will be available as issue suggestions and can be automatically imported.</p><p>You need to create an internal integration at <a href=\"https://www.notion.so/profile/integrations\">notion.so/profile/integrations</a> and share your database with the integration.</p>"
+      }
     }
   },
   "FILE_IMEX": {
