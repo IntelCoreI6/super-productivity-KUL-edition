@@ -40,7 +40,11 @@ export class NotionApiService {
       .pipe(
         map((page: any) => this._mapPageToIssue(page, cfg)),
         catchError((err) =>
-          handleIssueProviderHttpError$(NOTION_TYPE, this._snackService, err),
+          handleIssueProviderHttpError$<NotionIssue>(
+            NOTION_TYPE,
+            this._snackService,
+            err,
+          ),
         ),
       );
   }
@@ -96,7 +100,11 @@ export class NotionApiService {
           (response.results || []).map((page: any) => this._mapPageToIssue(page, cfg)),
         ),
         catchError((err) =>
-          handleIssueProviderHttpError$(NOTION_TYPE, this._snackService, err),
+          handleIssueProviderHttpError$<NotionIssue[]>(
+            NOTION_TYPE,
+            this._snackService,
+            err,
+          ),
         ),
       );
   }
